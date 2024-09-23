@@ -40,7 +40,7 @@ function App() {
         <h2 style={{ margin: '5px' }}>Your To-Do list</h2>
         <InputWithButton inputValue={inputValue} handleInput={handleInput} handleAdd={handleAdd}/>
 
-        {currentTasks.map((item, index: number) => 
+        {currentTasks.map((item: { data: string; }, index: number) => 
         <CheckboxCard userInputTask={item.data} key={`tasks-${index}`} handleRemove={handleRemove} index={index} />
         )}
 
