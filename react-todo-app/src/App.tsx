@@ -5,15 +5,17 @@ import { MantineProvider } from '@mantine/core';
 import { CheckboxCard } from './UI/task-checkbox';
 import { useState } from 'react';
 
+type localStorageTaskState = Array<{ data: string }>
+
 const localStorageState = localStorage.getItem("localTaskState")
-const getLocalState = localStorageState ? JSON.parse(localStorageState) : []
+const getLocalState: localStorageTaskState = localStorageState ? JSON.parse(localStorageState) : []
 
 localStorage.setItem("localTaskState", JSON.stringify(getLocalState))
 
 function App() {
 
-  const[inputValue, setInputValue] = useState('')
-  const[currentTasks, setCurrentTasks] = useState(getLocalState)
+  const[inputValue, setInputValue] = useState<string>('')
+  const[currentTasks, setCurrentTasks] = useState<localStorageTaskState>(getLocalState)
 
   function handleAdd() {
     currentTasks.push({data: inputValue})
@@ -28,7 +30,7 @@ function App() {
   }
 
   function handleRemove(index: number) {
-    const updatedTasks = currentTasks.filter((_task: never, i: number) => index != i )
+    const updatedTasks = currentTasks.filter((_task: { data: string }, i: number) => index != i )
     setCurrentTasks(updatedTasks)
 
     localStorage.setItem("localTaskState", JSON.stringify(updatedTasks))
