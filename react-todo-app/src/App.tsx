@@ -39,7 +39,7 @@ function App() {
   return <MantineProvider>
       <div>
         <HeaderSimple />
-        <h2 style={{ margin: '5px' }}>Your To-Do list</h2>
+        <h2 style={{ margin: '5px' }}>Your To-Do list!</h2>
         <InputWithButton inputValue={inputValue} handleInput={handleInput} handleAdd={handleAdd}/>
 
         {currentTasks.map((item: { data: string; }, index: number) => 
